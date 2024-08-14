@@ -1,0 +1,247 @@
+Normal mode is the default when entering Vim. 
+In Normal mode, use the following keys to move the cursor around:
+  h: Move cursor to the left
+  j: Move cursor down
+  k: move cursor up
+  l: move cursor to the right
+
+When in another mode, such as Insert mode or Visual mode, press the escape button
+
+  <esc>
+
+To close the editor while also saving changes to the file press colon followed by q then w
+
+  <:wq> 
+
+while in Normal mode.
+
+  Colons <:> trigger Command-Line mode.
+  the <w> character is used to write(save) the file.
+  The <q> character is used to quit the editor session.
+  All together the characters <:qw>(colon,q,w) enters Command-Line mode then exits the editor while saving any changes.
+
+To close the editor without saving changes press 
+
+  <:q!>
+
+If no changes have been made to the file since opening the editor then the exclamation mark can be omitted
+
+  <:q>
+
+The Vim editor is a modal editor. That means that the editor behaves differently, depending on which mode you are in.
+Vim has six basic modes:
+
+  1) Normal mode:
+    You start the editor in this mode. To exit other modes and return to Normal mode press
+
+    <esc>
+
+    Characters typed in this mode are known as Normal editor commands.
+    Some examples of Normal commands are:
+      the cursor movement commands:
+        h,j,k,l
+        zz - centers cursor on the screen
+      editor commands:
+        r - replaces a single character)
+        ciw - change an entire word
+      copy/paste comm
+        yy - copies(yanks) an entire line of text
+        p - pastes content from the clipboard after the cursor.
+
+  2) Visual mode:
+    Similar to Normal mode, but cursor movement commands extend a highlighted area. 
+    When a non-movement command is used, it is executed for the highlighted area.
+
+  3) Select mode:
+    Typing printable characters deletes the selection and starts Insert mode.
+
+  4) Insert mode:
+    Press
+
+      <i>
+    
+    to enter Insert mode.
+    Typing characters works as intended, i.e. printing them in the editor(Vim manual calls it buffer).
+
+  5) Command-line mode:
+    Press
+    
+      <:>
+
+    to enter this mode.
+    Used to enter 'Ex' comands, 'filter' commands, and 'search pattern' commands.
+
+  6) Ex mode:
+    Like Command-line mode, but you remain in Ex mode after entering commands.
+
+The two basic modes are Normal mode and Insert mode. In Normal mode, the characters you type are commands. 
+In Insert mode, the characters you type are text. From Normal mode, Press <i> to enter Insert mode. Press <Esc> to exit to Normal mode.
+
+Deleting characters:
+  To delete characters in Normal mode, hover the cursor over it and press
+
+    <x>
+
+Delete an entire line:
+  In Normal mode, press
+  
+  <dd>
+
+Deleting a line break:
+  The following deletes a line break from the current line, to join it with the following line. 
+  In Normal mode, press 
+
+  <J>
+
+  Note that it is a capital J. If you press <J> on this line it will delete the line break on this line and
+  It will join this line with the one above.
+
+Undo and Redo:
+  If you want to revert changes you made press
+
+  <u>
+
+  This is equivalent to <ctrl-z> in microsoft word and similar editors.
+  To reverse and undo press
+
+  <ctrl-r>
+
+  This is a white frog
+
+Appending:
+  <i> begins Insert mode before the cursor, if the cursor highlights a character. To start Insert mode after the cursor, press
+
+  <a>
+
+Opening a new line:
+  To begin a new line below the cursor and enter Insert mode, press
+
+  <o>
+
+  To begin a new line above the cursor and enter Insert mode, press
+
+  <O>
+
+  Note that to open a new line below use lowercase o, and above use uppercase O
+
+Using a count(repeating commands):
+  Many commands can be repeated by typing a number followed by the command. For example, moving the cursor to the line above requires
+  the <k> key. To move the cursor 4 lines above press
+  
+  <4k>
+
+  Similarly, to delete 3 characters combine <3> with the <x> command
+
+  <3x>
+
+Center page on cursor:
+  If you are typing a lot eventually the cursor will reach the bottom of page and stay there, unless you move it. This can sometimes make it harder
+  to read, such as when using a laptop while laying down due your hands obscuring part of the bottom screen [ :) ].
+  You can center the screen on the cursor by pressing
+
+  <zz>
+
+Closing and writing the file:
+  One way of closing the file is by entering Command-line mode with a colon
+
+  <:>
+
+  and entering the <q> command.
+
+  <:q>
+
+  However, an error will appear if unsaved changes were made. To write(save) a file press
+
+  <:w>
+
+  You can combine both of these commands to write and then close the file
+
+  <:wq>
+
+  If you wish to close the file without saving append an exclamation mark to the <q> command
+
+  <:q!>
+
+  There is also a shortcut that writes and exits the file which doesn't require entering Command-line mode
+
+  <ZZ>
+
+Chapter 3: Moving around 
+  Vim has a large number of commands to position the cursor. Here is a non-exhaustive list.
+
+Word movement:
+  To move the cursor foward to the next word press lowercase w
+  
+  <w>
+
+  to move to the beginning of the previous word press
+
+  <b>
+  
+  To move to the end of the next word press
+
+  <e>
+
+  and to move to the end of the previous word
+
+  <ge>
+
+  A word is defined as characters that do not contain alphanumeric characters. For example, steve is a word; steve/david are two words separated
+  by a foward slash.
+  To move to the next word separated by white-space press capital W
+
+  <W>
+
+Moving to the start or end of a line:
+  To move the cursor to the end of a line press
+
+  <$>
+  
+  To move to the beginning of the line press 0(zero)
+
+  <0>
+
+  To move to the first non-blank character(e.g no spaces) press
+
+  <^>
+
+  The <$> can be combined with counts, like most movement commands. However, moving to the end of the line several times doesn't make sense.
+  Therefore, when combined with counts the <$> command moves to the end of the following lines. For example, to move to the end of the next line press
+
+  <2$>
+
+  The <0> command cannot be combined with counts, same with <^>
+
+Moving to a character:
+  The single character search command allows you to move the cursor to the first instance of the given character ahead of the cursor
+
+  <f>
+
+  Combining the above command with a letter will find the first instance of that letter. For example, with the word zebra and the following command
+
+  <fz>
+
+  the cursor will jump to the word zebra. The <f> command can be combined with counts to jump to the next nth instance of the given character,
+  where n is the count. For example, with this sentance
+
+  A fox jumps over the moon
+
+  and the command 
+
+  <3fo>
+
+  positions the cursor over the first o of the word moon.
+  
+  Similarly, to search for words behind the cursor use capital F
+
+  <F>
+
+  The <t> command works like <f> except it stops one character before the searched character
+
+  <t>
+
+  Similarly, use capital T to search and stop one character before the searched character, behind the cursor.
+
+  <T>
+
+
