@@ -5,15 +5,15 @@ In Normal mode, use the following keys to move the cursor around:
   k: move cursor up
   l: move cursor to the right
 
-When in another mode, such as Insert mode or Visual mode, press the escape button
+When in another mode, such as Insert mode or Visual mode, you can return to Normal mode by pressing the escape button
 
   <esc>
 
-To close the editor while also saving changes to the file press colon followed by q then w
+To close the editor while also saving changes to the file press colon followed by w then q
 
   <:wq> 
 
-while in Normal mode.
+while in Normal mode
 
   Colons <:> trigger Command-Line mode.
   the <w> character is used to write(save) the file.
@@ -244,4 +244,66 @@ Moving to a character:
 
   <T>
 
+  These four commands can be repeated, sans count, by pressing 
 
+  <;>
+
+  Similarly, you can repeat these commands, but in reverse, by pressing
+
+  <,>
+
+  In the case of <F> and <T> where normal behavior searches behind the cursor, <,> reverses that direction causing the command to search ahead of the cursor instead.
+
+Matching Parenthesis:
+  Often times in code you will have matching parenthesis, such as when defining a function's parameters. You can move between one parenthesis to its counterpart by pressing
+
+    <%>
+
+  This also works for [] and {} pairs.
+  If the cursor is not on a parenthesis then it will search foward to find one.
+
+Moving to a specific line:
+  You can move to a specific line by combining a count with the <G> command. For example, to move to the 1st and 24th line respectively press
+
+    <1G>
+    <24G>
+
+  If you don't specificy a command then the <G> command moves the cursor to the end of the file.
+  You can move the cursor to the beginning(first line) by pressing
+
+    <gg>
+
+  This is equivalent to using <1G>
+  by the by, if you want to see the numbers of lines in vim you can enter command-line mode and type <set nu>. So to recap, to enter command-line mode and activate line numbers type
+
+    <:set nu>
+
+  You can also move the cursor to a percentage of the file, for example half way into the file, by using a count and combining it with the <%> command.
+  For example, to move to a third and half of the page press
+
+    <33%>
+    <50%>
+  
+  To move to the beginning, middle, and end of the visible page, respectively, you can use the following commands.
+
+    <H>
+    <M>
+    <L>
+
+Telling where you are:
+  You can figure out where you are in a file via 3 ways.
+  1) You can use the command:
+
+    <alt-G>
+
+  2) You can set the number option. This will display a line number in front of every line. Use either of the following commands
+
+    <:set number> 
+    <:set nu>
+  
+  To remove line numbers use
+    <:set nonumber>
+
+  3) Setting the ruler option. This will display the cursor position in the lower right corner of the Vim window
+
+    <:set ruler>
