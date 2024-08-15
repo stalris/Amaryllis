@@ -307,3 +307,69 @@ Telling where you are:
   3) Setting the ruler option. This will display the cursor position in the lower right corner of the Vim window
 
     <:set ruler>
+
+Scrolling around:
+  You can move text half a screen Up or Down by pressing
+
+    <ctrl-u>
+    <ctrl-d>
+
+  This is similar to using <k> and <j> to move around. 
+  Likewise, you can move text an entire screen up or down by using
+
+    <ctrl-f>
+    <ctrl-b>
+
+  Similarly, You can move text up and down one line at a time by using
+
+    <ctrl-e>
+    <ctrl-y>
+
+  You can center the screen on your cursor by pressing
+
+    <zz>
+  
+  Don't confuse this with capital <ZZ>. The lowercase <zz> will center the screen, uppercase will save and quit the file.
+
+  You can also put the cursor line at the top and bottom of the screen by using
+
+  <zt>
+  <zb>
+  
+  To clarify, these commands will move the text to the top and bottom of the screen, respectively, while also placing the cursor on said line.
+
+Simple searches:
+  To search for strings you can use 
+
+    </>
+
+  to enter command-line mode. The string that follows </> will be looked for. For example, if you wanted to search this file for the word pterodactyl
+  then you would type
+
+    </pterodactyl> 
+
+  Don't forget to press <enter> to execute the command.
+  If there are multiple instances of the word you can move to the next occurence by using
+
+    <n>
+
+  You can move to the previous occurence by using capital N
+
+    <N>
+
+  You can also search for words earlier in the file by using
+
+    <?>
+
+  You can specify search patterns to be case-insensitive by using the command
+
+    <:set ignorecase>
+
+  To make search patterns case-sensitive again use
+
+    <:set noignorecase>
+
+History 
+  Vim remembers what commands you've previously entered. You can press <up> (the cursor key) or <down> to look through previous command-line commands.
+  For example, to look at previous search pattern commands that have been executed first type </> and then press <up>.
+  Likewise, to look at previous commands that start with <:> first type <:> and then use <up> to cycle through previous commands.
