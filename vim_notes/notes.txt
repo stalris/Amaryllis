@@ -373,3 +373,99 @@ History
   Vim remembers what commands you've previously entered. You can press <up> (the cursor key) or <down> to look through previous command-line commands.
   For example, to look at previous search pattern commands that have been executed first type </> and then press <up>.
   Likewise, to look at previous commands that start with <:> first type <:> and then use <up> to cycle through previous commands.
+
+Searching for a word in the text:
+  Another way of looking for words, besides the </> command, is to place the cursor over a word and use
+
+    <*>
+
+  This method has the benefit of avoiding misspellings with the </> command.
+  Conversely, you can search for words in the other direction by placing the cursor over a word and using
+  
+    <#>
+
+Searching for whole words:
+  If you type </the> it will also match the word "soothe" and "thermometer". 
+  There is a special marker used to delimit the end of a word.
+
+    < /> > 
+
+  Likewise, this marker is used to delimit the beginning of a word.
+
+    < /< > 
+
+  For example, giving the following sentence:
+
+    soothe the thermometer
+
+  This command will match all 3 words
+
+    < /the >
+
+  This one will match "soothe" and "the"
+
+    < /the\> >
+
+  This one will match "the" and "thermometer"
+
+    < /\<the >
+
+  and this one will only match "the"
+
+    < /\<the\> >
+
+  Notice that the <*> and <#> commands use the start-of-word and end-of-word markers to find specific matches.
+  You can specify partial matches by using prepending <g> to those commands
+
+    <g*>
+    <g#>
+
+Highlighting matches:
+  Vim can highlight the results of matches by turning using this command
+
+    <:set hlsearch>
+
+  You can turn it off by using
+
+    <:set nohlsearch>
+  
+  To remove highlighting until the next search command use 
+  
+    <:nohlsearch>
+
+Tuning searches:
+  There are a few options that change how searching works. These are the essential ones:
+    
+    <:set incsearch>
+
+  The above command will display matches as you type them. Executing the command with <enter> will move the cursor to the match's location.
+
+  To stop searches at the end of a file, or at the beginning if looking backwards such as with <#>, you can use this command
+
+    <:set nowrapscan>
+
+  The 'wrapscan' option is on by default. To turn it on again use
+
+    <:set wrapscan>
+
+Intermezzo
+  Vim commands are only active during the current session unless saved in a Vim startup file. The default is called .vimrc and is usually located
+  in your home directory. For Linux/apple this is usually found by typing "cd ~" on the command line. For windows, You can try "cd %HOMEPATH".
+  If .vimrc does not exist in your home directory then you must create one save these commands in .vimrc if you wish to load them everytime you use
+  Vim.
+  
+  You can also use this command to find where your startup files are
+  
+    :scriptnames
+  
+  You can then edit any of said scripts/files by using either of these commands
+  
+    :edit enter_name_of_script_here.vim
+    :e enter_name_of_script_here.vim
+  
+  Once inside the file you can add commands sans <:>. For example, to add turning on line numbers to the .vimrc file type either
+  
+    <set number> 
+    <set nu>
+  
+  Once the file is saved, every new instance of Vim will start up with those commands.
