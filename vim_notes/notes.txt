@@ -469,3 +469,128 @@ Intermezzo
     <set nu>
   
   Once the file is saved, every new instance of Vim will start up with those commands.
+
+3.9 - Simple Search Patterns
+  The Vim editor uses regular expressions (Regex) to specify what to search for. This section mentions only a few.
+  
+3.9.1 
+  Beginning and end of a line:
+  The pattern </include> matches the word "include" anywhere on a line,
+  But the pattern 
+
+      </^include> 
+
+  matches the word "include" only if it begins a line.
+  To match words that end a line use the pattern
+
+    </include$>
+
+  Both "^" and "$" take into account whitespace. For example, if the beginning of a line starts with " the" then the pattern
+  </^include> will not match this. Likewise for "$".
+
+3.9.2
+  Matching any single character:
+  The "." character is a substitute for any single character. The pattern
+
+    </t.e>
+
+  Matches any word that contains the string that has "t", followed by any character, followed by "e". The above command will match
+  the words "the" and "together".   
+
+3.9.2
+  Matching special characters:
+  Because certain characters such as "$", "^", "/", ".", etc have special meanings in search patterns you must "escape" them if you want
+  to search for said character, instead of invoking its default function.
+  To escape special characters prepend them with a backslash
+
+    <\>
+
+  For example, in the sentence "There is a wolf among us." If you wanted to match the string "us." use the pattern
+
+    </us\.>
+
+3.10
+  Using Marks:
+  Generally, everytime you do a command that can move the cursor further than within the same line, this is called a jump.
+  When you jump to a position with the <G> command, Vim remembers the position from before this jump. This position is called a mark.
+  To jump to the previous position use
+
+    <``>
+
+  pressing <``> again jumps to the original position. 
+  The <``> command jumps back and forth between two points, while the 
+
+    <ctrl-O>
+    <ctrl-I>
+
+  jump to older and newer positions respectively.
+  The 
+    
+    <:jumps>
+
+  command gives a list of positions you jumped to. The entry which you used last is marked with a ">".
+
+3.11 
+  Named Marks:
+  Vim enables you to place your own marks in the text. Append the command
+
+    <m>
+
+  with a letter 'a' through 'z' to name and place that mark. For example, the command
+
+    <md>
+
+  places a mark named 'd' on wherever the cursor was when you typed it.
+  To jump to a mark, append the name of the mark with <`>. For example, to jump to the mark named 'd' type
+
+    <`d>
+
+  To get a list of marks use the command
+    
+    <:marks>
+
+  The following denote special marks.
+
+    ``  - The cursor position before doing a jump.
+    "   - The cursor position when last editing the file.
+    [   - Start of the last change.
+    ]   - End of the last change.
+
+Chapter 4 - Making small changes
+
+This chapter shows you several ways of making corrections and moving text around. It teaches you the three basic ways to change text: 
+  Operator-motion,
+  Visual mode, and
+  text objects
+
+4.1
+  Operators and motions
+  The delete operator
+    
+    <d>
+
+  Command may be followed by any motion command, such as <w>, and it will delete from its current location to the place where the cursor 
+  ends up, possibly including the character under the cursor. For example, to delete a word place the cursor at the beginning of a word and type
+
+    <dw>
+
+  this will delete from the cursor right up until before the beginning of the next word.
+  The command
+
+    <de>
+
+  will delete from the cursor until, and including, the last character of a word.
+  Whether the character under the cursor is included depends on the motion command. The reference manual calls this "exclusive" when the character
+  isn't included and "inclusive" when it is. For example, the "$" command moves to the end of the line and paired with "d" will delete to the end
+  of the line, including the last character. This is an "inclusive" motion.
+
+  The pattern here is operator-motion. You first type an operator command followed by a motion command.
+
+4.2
+  Changing text
+  Another operator is the 
+
+    <c>
+
+  Command, for 'change'. It acts almost like <d> in that it will delete text, except it leaves you in insert mode. 
+
