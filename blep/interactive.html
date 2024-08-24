@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<style>
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  border: 0px;
+}
+#container{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+}
+#left{
+  height: 100%;
+  width: 45%;
+  background-color: green;
+}
+#right{
+  width: 45%;
+  margin:0;
+  background-color: pink;
+}
+
+
+</style>
+  </head>
+  <body>
+    <h1>내 번역 압</h1>
+    <div id="container">
+      <textarea id='left'placeholder="더 먾은 노트"></textarea>
+      <p id='right'>hello</p>
+    </div>
+    <script>
+      const kRegex = /[\uAC00-\uD7AF]/;
+      const kDict = {
+              "안녕하세요" : "hello",
+      };
+      const eDict = {
+        "hello" : "안녕하세요",
+      };
+      
+      function check(word){
+        // Add an unknown word to the dictionary.
+        if(word in kDict){
+          return kDict[word];
+        }else if(word in eDict){
+          return eDict[word];  
+        }else{
+          //TODO. call google api.
+          return "rip bozo";
+        }
+      };
+
+      function translate(event){
+        const inputText = event.target.value.trim();
+        if(inputText === ""){
+          document.getElementById("right").textContent = "";
+          return;
+        }
+        let word = check(inputText);
+        document.getElementById('right').textContent= word;
+      }
+      document.getElementById('left').addEventListener('input',translate);
+    </script>
+  </body>
+</html>
