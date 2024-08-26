@@ -31,7 +31,7 @@ body {
 </style>
   </head>
   <body>
-    <h1>내 번역 압</h1>
+    <h1>내 번역 앱</h1>
     <div id="container">
       <textarea id='left'placeholder="더 먾은 노트"></textarea>
       <p id='right'>hello</p>
@@ -46,14 +46,13 @@ body {
       };
       
       function check(word){
-        // Add an unknown word to the dictionary.
         if(word in kDict){
           return kDict[word];
         }else if(word in eDict){
           return eDict[word];  
         }else{
-          //TODO. call google api.
-          return "rip bozo";
+          // TODO Add an unknown word to the dictionary via google translate api.
+          return word;
         }
       };
 
@@ -63,8 +62,19 @@ body {
           document.getElementById("right").textContent = "";
           return;
         }
-        let word = check(inputText);
-        document.getElementById('right').textContent= word;
+        let words = [];
+              // TODO parse words as they are found.
+        for(let i = 0, j = inputText.length; i < j; i++){
+              
+        }
+
+        let words = inputText.split(' ');
+        let output = '';
+        words.forEach((word) => {
+          let w = check(word);
+          output += w + ' ';
+        });
+        document.getElementById('right').textContent = output.trim();
       }
       document.getElementById('left').addEventListener('input',translate);
     </script>
