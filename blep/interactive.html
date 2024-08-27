@@ -34,17 +34,20 @@ body {
     <h1>내 번역 앱</h1>
     <div id="container">
       <textarea id='left'placeholder="더 먾은 노트"></textarea>
-      <p id='right'>hello</p>
+      <textarea id='right' disabled>hello</textarea>
     </div>
     <script>
       const kRegex = /[\uAC00-\uD7AF]/;
       const kDict = {
-              "안녕하세요" : "hello",
+      "안녕하세요"      : "hello",
+      "친구"            : "friend",                
       };
       const eDict = {
-        "hello" : "안녕하세요",
+        "hello"         : "안녕하세요",
+        "friend"        : "친구",
       };
-      
+        
+      // Check if the word is in the local dictionary.
       function check(word){
         if(word in kDict){
           return kDict[word];
@@ -55,25 +58,40 @@ body {
           return word;
         }
       };
-
+  
+      // Parse words from user.
       function translate(event){
         const inputText = event.target.value.trim();
         if(inputText === ""){
           document.getElementById("right").textContent = "";
           return;
         }
-        let words = [];
-              // TODO parse words as they are found.
-        for(let i = 0, j = inputText.length; i < j; i++){
-              
-        }
-
+  
+        // TODO This code runs slower, according to console.time(). Find out why this is, later.
+        // console.time();
+        // // Parse the string character by character.
+        // let word = '';
+        // let output = '';
+        // for(let i = 0, j = inputText.length; i < j; i++){
+        //   if(inputText[i] === ' ' || inputText.length-1 === i){
+        //     // found a space
+        //     if(inputText[i] === ' '){
+        //       output += check(word);
+        //       output += ' ';
+        //       word = '';
+        //     }
+        //     // end of string
+        //     else
+        //       output += check(word+inputText[i]);
+        //   }else
+        //     word += inputText[i];
+        // }
+        // console.timeEnd();
+        
+        // Using string and array methods to parse user input.
         let words = inputText.split(' ');
-        let output = '';
-        words.forEach((word) => {
-          let w = check(word);
-          output += w + ' ';
-        });
+        let output = words.map(check).join(' ');
+  
         document.getElementById('right').textContent = output.trim();
       }
       document.getElementById('left').addEventListener('input',translate);
