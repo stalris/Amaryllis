@@ -593,4 +593,24 @@ This chapter shows you several ways of making corrections and moving text around
     <c>
 
   Command, for 'change'. It acts almost like <d> in that it will delete text, except it leaves you in insert mode. 
+  The command
 
+    <cw>
+
+  Will delete a word and leave you in insert mode. Oddly enough, it won't delete any whitespace before the next word. 
+  Instead, it acts exactly like the command 
+
+    <ce>
+
+  This is an exception that has remaining since the days of Vi, the predecessor of Vim. 
+
+  Similarly, 
+
+    <cc>
+
+  will delete the entire line and leave you in insert mode. 
+  Likewise,
+
+    <c$>
+
+  will delete until the end of line and leave you in insert mode. 

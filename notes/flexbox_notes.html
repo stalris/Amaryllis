@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+  </head>
+  <body>
+    <h2> Flexbox</h2>
+    <p>The Flexible layout module (or Flexbox) is a one-dimensional layout module for distributing space between items. In this context, 
+    One-dimensional refers to Flexbox arrainging items in either a row or column. This is contrasted with the two-dimensional layout of 
+    'CSS Grid Layout', which controls columns and rows together. </p>
+    <h2>The Flex Container</h2>
+    <p>Elements that arrange their children using the Flexbox layout are called flex containers. To create a flex container, set the element's
+    display property to flex. For example, to use Flexbox on a div use </p>
+    <code>&lt;div style='display: flex;'&gt;&lt;div&gt;</code>
+    </br>
+    <code>div {</br>&nbsp;&nbsp;display: flex;</br>}</code>
+    </br>
+    <input id='flex1'>
+    <p id='p1'></p>
+    <div style='display:flex; '>
+      <p style='flex: 1 1 0';>hi</p>
+      <p style='flex: 1 1 0;background-color: green;'>hi</p>
+      <p style='flex: 1 1 0;'>hi</p>
+    </div>
+    <script>
+      function updateText(event){
+        let input = event.target.value;
+        document.getElementById('p1').textContent = input;
+      } 
+      document.getElementById('flex1').addEventListener('input', updateText);
+    </script>
+  </body>
+</html
