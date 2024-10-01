@@ -11,6 +11,8 @@ public class ll_5{
     sHead = sHead.new_head("두려움 없는");
   
     System.out.println("안녕");
+    System.out.println("hello");
+    System.out.println("안녕");
 
     node<Integer> circular_list = node.circular_list();
     circular_list.display();
