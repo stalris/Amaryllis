@@ -44,32 +44,49 @@ class mSort{
   }
 
   void sort(int lower, int upper){
-    System.out.println("Array["+lower+"]: "+array[lower]);
-    System.out.println("Array["+upper+"]: "+array[upper]);
+    // When the 'bounds' of an array/subarray are the same, the array has a size of 1.
+    // These arrays are considered sorted and the finding them is the first step in merge sort.
     if(lower == upper){
-      // We found a subarray of size 1
-      System.out.println(array[lower]);
       return;
     }else{
 
-      // This array must be split into two equal subarrays.
-      // The lower half is bounded by lower and the middle index
-      // The upper half is bounded by the (middle index + 1) and upper
+      // If the boundaries of the array do not equal each other then we must divide them in half and sort each half.
+      // Sort the left and right subarrays
       int middle = (lower+upper) / 2;
+      // Sort both sub arrays
       sort(lower, middle);
       sort(middle+1, upper);
-
-      // Swap
-      if(array[lower] > array[upper]){
-        int greater = array[lower];
-        array[lower] = array[upper];
-        array[upper] = greater;
+      
+      // Combine the sorted subarrays by first copying into a temporary array.
+      int[] temp = new int[upper-lower+1];
+      int lower_left = lower;
+      int lower_right = middle+1;
+      for(int i = 0; i < temp.length; i++){
+        // Left subarray is exhausted
+        if(lower_left > middle){
+          temp[i] = array[lower_right];
+          lower_right++;
+        }
+        // right subarray is exhausted
+        else if(lower_right > upper){
+          temp[i] = array[lower_left];
+          lower_left++;
+        }
+        // Compare smallest elements from both subarrays
+        else{
+          if(array[lower_left] < array[lower_right]){
+            temp[i] = array[lower_left];
+            lower_left++;
+          }else{
+            temp[i] = array[lower_right];
+            lower_right++;
+          }
+        }
       }
-
-      System.out.println("After swap");
-      System.out.println("\tArray[lower]: "+array[lower]);
-      System.out.println("\tArray[upper]: "+array[upper]);
-      System.out.println();
+      // Copy the temp array
+      for(int i = 0; i < temp.length; i++){
+        array[lower+i] = temp[i];
+      }
     }
     return;
   }
