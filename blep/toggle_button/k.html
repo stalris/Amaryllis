@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<style>
+body{
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+label{
+  width: 500px;
+  height: 200px;
+  background: lightblue;
+  cursor: pointer;
+  border: 10px solid rgba(198, 247, 253, 0.3);
+  border-radius: 250px;
+  position:relative;
+}
+
+label::before{
+  content: '';
+  position:absolute;
+  height: 110px;
+  width: 110px;
+  background: darkblue;
+  border: 10px solid rgba(198, 247, 253, 0.3);
+  border-radius: 50%;
+  top: 25px;
+  left: 30px;
+  transition: .8s ease;
+}
+
+label::after{
+  content: '';
+  position:absolute;
+  height: 110px;
+  width: 110px;
+  background: white;
+  border: 10px solid rgba(198, 247, 253, 0.3);
+  border-radius: 50%;
+  top: 25px;
+  left: 30px;
+  transition: .8s ease;
+}
+
+input:checked ~ label::after{
+  left: 440px;
+  transform: translateX(-100%);
+  background:white;
+}
+
+input:checked ~ label::before{
+  left: 440px;
+  border: 10px solid rgba(90, 79, 136, 0.2);
+  transform: translateX(-100%);
+}
+
+
+
+</style>
+  </head>
+  <body>
+    <title>내 고양이 귀엽다</title>
+    <input type='checkbox' id='toggle'/>
+    <label for='toggle' id='one'></label>
+    <div class='background'></div>
+  </body>
+</html>

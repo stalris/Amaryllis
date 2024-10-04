@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<style>
+body{
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header{
+  background-color: lightblue;
+  flex: 0 0 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  display: none;
+}
+
+label {
+  width:  75px;
+  height: 35px;
+  background-color: lightgreen;
+  border-radius: 50px;
+  /*
+     position: relative has two main purposes.
+
+     The first, it offsets the visual presentation of an element by shifting it using top, left, bottom, or right properties,
+     while still keeping its position in the flow of the document. 
+     The space that the element originally occupies remainds unchanged, even though its visual position is adjusted.
+     This function isn't currently used by label.
+
+     The second, it establishes a positioning context for child elements that use position: absolute.
+     When a child element has position: absolute, it will be positioned relative to the nearest ancestor that has a position other than 
+     static (i.e., relative, absolute, fixed, or sticky). If no such ancestor exists, the absolutely positioned element will position itself
+     relative to the viewport.
+
+  */
+  position: relative;
+}
+
+label::before {
+  content: '';
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  border-radius: 50%;
+  left: 5px;
+
+  /*
+     These two properties combined help to vertically center the pseudo-element within the label.
+     The reason top isn't sufficient is that it specifies the distance from the top edge of its container element.
+     
+     When you set top:50%, it moves the top edge of the ::before element to 50% of the container's height.
+     In this case, this positions the top edge at 17.5px from the top edge of the label (since 35px/2 = 17.5px).
+
+     The problem arises because we want the center of ::before to align with the center of the label.
+     Instead, top:50% aligns only the top of ::before with the center label.
+
+     To resolve this, we need to shift ::before upward by half of its height.
+     This is achieved using transform: translateY(-50%), which effectively centers the pseudo-element within the label.
+   */
+  top: 50%;
+  transform: translateY(-50%);
+  position:absolute;
+}
+
+label::after{
+  content: '';
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  border-radius: 50%;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  position:absolute;
+}
+
+</style>
+  </head>
+  <body>
+    <header>
+      <input type='checkbox' id='toggle'/>
+      <label for='toggle'></label>
+    </header>
+  </body>
+</html>
