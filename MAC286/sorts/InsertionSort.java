@@ -1,34 +1,63 @@
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.NumberFormatException;
-import java.nio.charset.StandardCharsets;
 
 public class InsertionSort{
   public static void main(String[] args){
     System.out.println("안녕");
     InsertSort num8 = new InsertSort("Num8.txt");
-    System.out.println("Before sorting");
-    num8.display();
+    InsertSort num16 = new InsertSort("Num16.txt");
+    InsertSort num32 = new InsertSort("Num32.txt");
+    InsertSort num64 = new InsertSort("Num64.txt");
+    InsertSort num128 = new InsertSort("Num128.txt");
+    InsertSort num256 = new InsertSort("Num256.txt");
+    InsertSort num512 = new InsertSort("Num512.txt");
+    InsertSort num1024 = new InsertSort("Num1024.txt");
+    InsertSort num2048 = new InsertSort("Num2048.txt");
+    InsertSort num4096 = new InsertSort("Num4096.txt");
+    InsertSort num8192 = new InsertSort("Num8192.txt");
+    InsertSort num16284 = new InsertSort("Num16284.txt");
+
     num8.sort();
-    System.out.println("After sorting");
+    num16.sort();
+    num32.sort();
+    num64.sort();
+    num128.sort();
+    num256.sort();
+    num512.sort();
+    num1024.sort();
+    num2048.sort();
+    num4096.sort();
+    num8192.sort();
+    num16284.sort();
+
     num8.display();
+    num16.display();
+    num8.write("huh.txt");
+    num64.write("answers_64.txt");
+    num128.write("answers_128.txt");
   }
 }
 
 class InsertSort{
   private int[] array;
-  public int count; // Used to indicate the cost of running insertion sort.
+  private int count; // Used to indicate the cost of running insertion sort.
+  private String file; 
 
   InsertSort(int[] a){
     array = a;
     count = 0;
+    file = "";
   }
 
   InsertSort(int n){
     array = new int[n];
     count = 0;
+    file = "";
   }
 
   // Creates an int array from a file. Assumes it is populated with numbers.
@@ -82,6 +111,7 @@ class InsertSort{
     // Clean up.
     array = a;
     count = 0;
+    this.file = file;
   }
 
   // Populate the array with random numbers between [0,n)
@@ -124,12 +154,27 @@ class InsertSort{
 
   // Prints out the contents of this array.
   void display(){
-    for(int i = 0; i < array.length; i++){
-      System.out.println("array["+i+"]: "+array[i]);
-    }
-    System.out.println("Length of array: "+array.length);
-    System.out.println("Count: "+count);
+    System.out.println("Count of "+file+" : "+count);
     System.out.println();
+  }
+
+  void write(String file){
+    String s;
+    try(FileWriter f = new FileWriter(file)){
+      if(array.length < 65){
+        s = Arrays.toString(array);
+        f.write(s);
+        f.close();
+      }else{
+        int[] nums = Arrays.copyOfRange(array, 51, 100);
+        s  = Arrays.toString(nums);
+        f.write(s);
+        f.close();
+      }
+    }catch(IOException iofu){
+      System.out.println("ioexception hehe");
+      iofu.printStackTrace();
+    }
   }
 
 }
