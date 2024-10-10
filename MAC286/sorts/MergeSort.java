@@ -1,6 +1,9 @@
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.lang.Integer;
@@ -11,41 +14,86 @@ public class MergeSort{
   public static void main(String[] args){
     System.out.println("안녕");
     mSort num8 = new mSort("Num8.txt");
-    num8.display();
+    mSort num16 = new mSort("Num16.txt");
+    mSort num32 = new mSort("Num32.txt");
+    mSort num64 = new mSort("Num64.txt");
+    mSort num128 = new mSort("Num128.txt");
+    mSort num256 = new mSort("Num256.txt");
+    mSort num512 = new mSort("Num512.txt");
+    mSort num1024 = new mSort("Num1024.txt");
+    mSort num2048 = new mSort("Num2048.txt");
+    mSort num4096 = new mSort("Num4096.txt");
+    mSort num8192 = new mSort("Num8192.txt");
+    mSort num16284 = new mSort("Num16284.txt");
+
     num8.sort();
+    num16.sort();
+    num32.sort();
+    num64.sort();
+    num128.sort();
+    num256.sort();
+    num512.sort();
+    num1024.sort();
+    num2048.sort();
+    num4096.sort();
+    num8192.sort();
+    num16284.sort();
+
     num8.display();
+    num16.display();
+    num32.display();
+    num64.display();
+    num128.display();
+    num256.display();
+    num512.display();
+    num1024.display();
+    num2048.display();
+    num4096.display();
+    num8192.display();
+    num16284.display();
   }
 }
 
 class mSort{
   private int[] array;
   private int count;
+  private String file;
+  private String unsorted;
+  private String sorted;
   
   mSort(){
     array = new int[10];
     count = 0;
+    file = "";
+    unsorted = Arrays.toString(array);
   }
 
   mSort(int n){
     array = new int[n];
     count = 0;
+    file = "";
+    unsorted = Arrays.toString(array);
   }
 
   mSort(int[] a){
     array = a;
     count = 0;
+    unsorted = Arrays.toString(array);
   }
 
   // Read a file with numbers.
   mSort(String file){
-    FileReader f;
-    char[] b = new char[100000];
-    int b_size;
-    // Read the file and store it in a buffer.
-    try{
-      f = new FileReader(file);
-      b_size = f.read(b);
-      f.close();
+    // Read the file, convert each line into numbers(if possible), and store them in nums. 
+    ArrayList<Integer> nums = new ArrayList<>();
+    try(BufferedReader b = new BufferedReader(new FileReader(file))){
+      String s;
+      while((s = b.readLine())!= null){
+        try{
+          nums.add(Integer.parseInt(s));
+        }catch(NumberFormatException nufu){
+          // The line wasn't a valid number. Squash this error for now.
+        }
+      }
     }catch(FileNotFoundException fu){
       System.out.println("Couldn't find the file in this directory: "+file);
       fu.printStackTrace();
@@ -56,26 +104,6 @@ class mSort{
       return;
     }
     
-    // Convert the char buffer into a string
-    String temp_s = new String(b, 0, b_size);
-    // Separate words in a file along their newlines.
-    String[] words = temp_s.split("\n");
-
-    // Convert valid words into their numeric counterparts.
-    String s;
-    ArrayList<Integer> nums = new ArrayList<>();
-    for(int i = 0; i < words.length; i++){
-      s = words[i].trim();
-      // Make sure there is a word to read.
-      if(!s.isEmpty()){
-        try{
-          nums.add(Integer.parseInt(s));
-        }catch(NumberFormatException nfu){
-          // String didn't represent a valid number. Ignore this warning for now.
-        }
-      }
-    }
-
     // Add the numbers to an int array.
     array = new int[nums.size()];
     for(int i = 0; i < nums.size(); i++){
@@ -84,6 +112,8 @@ class mSort{
 
     // clean up.
     count = 0;
+    this.file = file;
+    unsorted = Arrays.toString(array);
   }
 
   // Randomize elements in the array.
@@ -155,22 +185,26 @@ class mSort{
 
   void display(){
 
-    // Pring out the values of the array.
-    for(int i = 0; i < array.length;i++){
-      System.out.println("array["+i+"]: "+array[i]);
-    }
-    System.out.println("length: "+array.length);
-    System.out.println("Count: "+count);
+    System.out.println("File: "+file);
+    System.out.println("\tlength: "+array.length);
+    System.out.println("\tCount: "+count);
     System.out.println();
   }
 
   // Store the values of the int array into a file.
-  void writeTo(String file){
-      try(FileWriter f = new FileWriter(file)){
-      StringBuilder s = new StringBuilder();
-      for(int i = 0; i < array.length; i++){
-        
+  void write(String file){
+    try(FileWriter f = new FileWriter(file)){
+      String s;
+      if(array.length < 65){
+        s = Arrays.toString(array);
+        f.write(s);
+      }else if(array.length >= 100){
+        s = Arrays.toString(Arrays.copyOfRange(array, 51, 101));
+        f.write(s);
       }
+    }catch(IOException iofu){
+      System.out.println("404: File not found.");
+      iofu.printStackTrace();
     }
   }
 }
