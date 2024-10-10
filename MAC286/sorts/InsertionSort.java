@@ -48,18 +48,18 @@ public class InsertionSort{
     num4096.display();
     num8192.display();
     num16284.display();
-    num8.write("answers_8.txt");
-    num16.write("answers_16.txt");
-    num32.write("answers_32.txt");
-    num64.write("answers_64.txt");
-    num128.write("answers_128.txt");
-    num256.write("answers_256.txt");
-    num512.write("answers_512.txt");
-    num1024.write("answers_1024.txt");
-    num2048.write("answers_2048.txt");
-    num4096.write("answers_4096.txt");
-    num8192.write("answers_8192.txt");
-    num16284.write("answers_16284.txt");
+    num8.write("insertion_sort_8.txt");
+    num16.write("insertion_sort_16.txt");
+    num32.write("insertion_sort_32.txt");
+    num64.write("insertion_sort_64.txt");
+    num128.write("insertion_sort_128.txt");
+    num256.write("insertion_sort_256.txt");
+    num512.write("insertion_sort_512.txt");
+    num1024.write("insertion_sort_1024.txt");
+    num2048.write("insertion_sort_2048.txt");
+    num4096.write("insertion_sort_4096.txt");
+    num8192.write("insertion_sort_8192.txt");
+    num16284.write("insertion_sort_16284.txt");
   }
 }
 
