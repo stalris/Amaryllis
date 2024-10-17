@@ -1,3 +1,5 @@
+package data_structures;
+
 public class array_stack{
   public static void main(String[] args){
     Stack nums = new Stack(100);
