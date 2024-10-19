@@ -8,9 +8,8 @@ package data_structures;
 // The syntax for declaring a generic class with a generic parameter is:
 // class ClassName<T> {...}
 public class LStack<Type>{
-  // reference to the top of the stack (The first node in the list).
-  // The identifier for the generic parameter can be used in the class as follows:
-  private Node head; 
+
+  private Node head; // reference to the top of the stack (The first node in the list).
   private int size; // Keeps track of the number of elements in the list. Useless for now, might use it later.
 
   // Constructor to instantiate a new LStack.
@@ -31,9 +30,9 @@ public class LStack<Type>{
   }
 
   // Add a new element onto the stack.
-  public void push(Type d){
+  public void push(Type data){
     // Create a new node. This will act as the new head of the stack.
-    Node newNode = new Node(d);
+    Node newNode = new Node(data);
 
     // Check for the general case, where at least one node exists in the list.
     if(!isEmpty()){
@@ -54,6 +53,7 @@ public class LStack<Type>{
     // The general case, where at least one element is in the list.
     Type data = head.data;
     head = head.next;
+    size--;
     return data;
   }
 
@@ -70,5 +70,9 @@ public class LStack<Type>{
   // Check if the stack is empty.
   public boolean isEmpty(){
     return (head == null);
+  }
+
+  public int size(){
+    return size;
   }
 }
