@@ -2,8 +2,8 @@ package data_structures;
 
 // A queue implements first-in, first-out.
 public class LQueue<Type>{
-  private Type head;
-  private Type last;
+  private node<Type> head;
+  private node<Type> last;
   private int size;
 
   // Not sure if node needs methods besides its constructors. Think LQueue will implement everything else.
