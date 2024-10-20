@@ -1,75 +1,70 @@
 package data_structures;
 
-// A queue implements first-in, first-out.
 public class LQueue<Type>{
-  private node<Type> head;
-  private node<Type> last;
-  private int size;
-
-  // Not sure if node needs methods besides its constructors. Think LQueue will implement everything else.
-  public class node<Type>{
-    private node<Type> next;
-    private node<Type> prev;
-    private Type data;
-
-    // In order to call another constructor from within a constructor (AKA constructor chaining) you must use 'this' keyword.
-    node(){
-      this(null);
-    }
-
-    node(Type d){
-      next = null;
-      prev = null;
-      data = d;
-    }
-  }
-
-  // LQueue needs to be public in order to be called from outside the package. 
-  // In other words, if you import this class and try to instantiate a new LQueue<>(), it will fail if it doesn't have the public access modifier.
+  private node head; // reference to the beginning of the list, which serves as the head of the queue.
+  private node tail; // reference to the end of the list, which serves as the tail of the queue.
+  private int size; // Not using it for anything so far, might change later.
+  
+  // Initialize an empty queue with 0 nodes.
   public LQueue(){
-    // An empty queue with no nodes.
     head = null;
-    last = null;
+    tail = null;
     size = 0;
   }
 
-  // Methods that queue needs to implement, push(), pop(), top(), isEmpty()
-  public void push(Type d){
-    // Check if the Queue is empty.
-    node<Type> new_node = new node<>(d);
+  public class node{
+    private node next; // reference to the next node on the list.
+    private Type data; 
+
+    node(Type data){
+      this.next = null;
+      this.data = data;
+    }
+  }
+
+  // Add nodes to the queue.
+  public void enqueue(Type data){
+    // Create a new node.
+    node new_node = new node(data);
+    // Check if the list is empty.
     if(isEmpty()){
+      // The only time the head node is updated during enqueue() is when the list is empty.
       head = new_node;
     }else{
-      // Push new elements to the end of the list, The queue will pop() from the head of the list.
-      last.next = new_node;
-      new_node.prev = last;
+      // The list has at least one node. Point that node to the new tail (new_node).
+      tail.next = new_node;
     }
-    last = new_node;
+
+    tail = new_node;
     size++;
   }
 
-  public boolean isEmpty(){
-    return size==0;
-  }
-
-  // Return the element that would be popped.
-  public Type top(){
+  // Remove nodes from the queue.
+  public Type dequeue(){
+    // Empty list, do nothing.
     if(isEmpty())
       return null;
-    return head.data;
+    // Grab the data before losing the reference to the former head of the queue.
+    Type data = head.data;
+    head = head.next;
+    // If we just removed the last node then head now equals null.
+    if(head == null)
+      tail = null;
+    size--;
+    return data;
   }
 
-  // This queue will pop from the beginning of the list, since it pushes to the end of the list.
-  public Type pop(){
-    if(isEmpty){
-      return null;
+  // List is empty when the head has no reference to a node.
+  public boolean isEmpty(){
+    return head == null;
+  }
+
+  // Print out the contents of the list starting from the head of the queue.
+  public void display(){
+    node current = head;
+    while(current != null){
+      System.out.println(current.data);
+      current = current.next;
     }
-    node<Type> popped = head;
-    // update head. Will be null if the popped element was the last element.
-    head = popped.next;
-    // TODO
-    // if 
-    if(head != null)
-      head.prev = null;
   }
 }
