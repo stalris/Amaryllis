@@ -1,5 +1,4 @@
-import data_structures.LQueue;
-
+import data_structures.QStack;
 
 // Implement a stack using two queues.
 // The strategy is to recognize that, assuming the head of the queue is the head of the list, then dequeue() and pop() share the same operation.
@@ -8,7 +7,17 @@ import data_structures.LQueue;
 public class Stack{
   public static void main(String[] args){
     System.out.println("어느새 여름 지나 가을");
-    LQueue<Integer> q1 = new LQueue<>();
-    LQueue<Integer> q2 = new LQueue<>();
+    QStack<Integer> stack = new QStack<>();
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+    stack.display();
+    System.out.println();
+    System.out.println(stack.top());
+    System.out.println();
+    System.out.println(stack.pop());
+    System.out.println(stack.pop());
+    System.out.println(stack.pop());
+    stack.display();
   }
 }
