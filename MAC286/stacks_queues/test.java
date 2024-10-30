@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import data_structures.SQueue1;
 import data_structures.QStack1;
 import java.util.NoSuchElementException;
@@ -83,32 +82,5 @@ public class test{
       System.out.println("\tempty?: "+stack.isEmpty());
       System.out.println("\tpopping: "+stack.pop());
     }
-=======
-import data_structures.AQueue1;
-
-public class test{
-  public static void main(String[] args){
-    System.out.println("안녕");
-    AQueue1 nums = new AQueue1();
-
-    int k = 0;
-    for(int i = 0; i < 10; i++){
-      nums.enqueue(k++);
-      System.out.println(nums.isFull());
-    }
-
-    nums.display();
-
-    for(int i = 0, j = nums.size()-1; i < j; i++){
-      System.out.println(nums.dequeue());
-    }
-
-    for(int i = 0, j = 10 - nums.size(); i < j; i++){
-      nums.enqueue(k++);
-      System.out.println(nums.isFull());
-    }
-
-    nums.display();
->>>>>>> 077e85bab98f740477b6040e59ddf12b5ffb5121
   }
 }
