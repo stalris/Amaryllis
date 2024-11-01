@@ -1,0 +1,87 @@
+// Base version.
+//
+// Add() method inserts an element e at index i by starting the shifts at the end of the list.
+public class ListArray{
+  public static void main(String[] args){
+    System.out.println("아녕");
+    l nums = new l();
+
+    for(int i = 0, j = 9; i < 10; i++){
+      System.out.println("Inserting "+i+" in nums["+j+"]");
+      nums.add(i, j);
+    }
+
+    System.out.println("Printing all elemets in nums");
+    for(int i = 0; i < nums.size; i++){
+      System.out.println("nums["+i+"]: "+nums.get(i));
+    }
+  }
+}
+
+class l{
+  public int[] nums;
+  public int size;
+
+  public l(){
+    this(10);
+  }
+
+  public l(int n){
+    nums = new int[n];
+    size = 0;
+  }
+
+  public boolean isEmpty(){
+    return size == 0;
+  }
+
+  public int size(){
+    return size;
+  }
+
+  public int get(int n)throws IndexOutOfBoundsException{
+    return nums[n];
+  }
+
+  // Replaces the element at 'index', and returns the old value.
+  public int set(int n, int index) throws IndexOutOfBoundsException{
+    int temp = nums[index];
+    nums[index] = n;
+    return temp;
+  }
+
+  // Shifts all elements to the right, by starting with the last element.
+  public void add(int n, int index){
+    if(size == 0){
+      nums[0] = n;
+      size++;
+      return;
+    }
+    if(size == nums.length)
+      throw new IllegalStateException("Stakc is full");
+    // Refuse to index at i if it would result in 'empty' elements in the list.
+    // Append to the end of the list instead.
+    System.out.println("\n\tinside add"+n+" at nums["+index+"]");
+    if(index > size){
+      nums[size] = n;
+    }else{
+      // Index of the last element in the list.
+      int last = size-1;
+      //System.out.println("Looping inside of add");
+      while(last >= index){
+        // Just print out the elements in the list for now, making sure I didn't screw this up.
+        //System.out.println("nums["+last+"]: "+nums[last]);
+        // Move the current element, 'last', to the next available index.
+        nums[last+1] = nums[last];
+        // Arrived at 'index', Insert last element.
+        if(index == last)
+          nums[last] = n;
+        last--;
+      }
+    }
+    System.out.println("Ending loop in add. List is currently as: ");
+
+    size++;
+
+  }
+}
