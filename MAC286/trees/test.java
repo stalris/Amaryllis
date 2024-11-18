@@ -20,6 +20,7 @@ public class test{
      nums.add(11);
      System.out.println("Inserting: "+ 15);
      nums.add(15);
+     System.out.println();
      System.out.println("Height: "+nums.height());
      System.out.println();
 
