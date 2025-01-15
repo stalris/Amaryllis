@@ -14,7 +14,7 @@ int main(void){
   cin >> num;
   cout << "Enter a value for the base(between 2-16): ";
   cin >> new_base;
-  cout << base_converter(num, 10, new_base) << endl;
+  cout << num << " = " << base_converter(num, 10, new_base) << " base " << new_base << endl;
 }
 
 string base_converter(int num, int base, int new_base){
