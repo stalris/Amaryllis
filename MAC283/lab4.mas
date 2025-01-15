@@ -1,0 +1,33 @@
+﻿Input
+Store x
+Input
+Store y
+Input
+Store z
+
+one_ten, input
+Store w
+Subt eleven
+Skipcond 000 // only skip the loop if w is smaller than 11.
+Jump one_ten
+load w
+skipcond 800 // skip the loop if w is greater than 0
+Jump one_ten
+Output / Output only if the number is between 1(inclusive) and 10(inclusive)
+
+sum, load x
+Add y
+Subt z
+store NUM
+Output
+
+Halt
+
+
+
+w, dec 0
+x, dec 0
+y, dec 0
+z, dec 0
+NUM, dec 0
+eleven, dec 11
