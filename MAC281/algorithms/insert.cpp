@@ -8,10 +8,10 @@ void print_nums(int* nums, int length);
 
 int main(void){
   // create arrays dynamically incase it needs to be resized (when resizing delete old array, but can't delete a static array)
-  int length = 6;
+  int length = 5;
   int capacity = length;
-  int* nums = new int[length]{1, 2, 4, 6, 9, 10};
-  int x = 11;
+  int* nums = new int[length]{2,4,6,8,10};
+  int x = 0;
 
   print_nums(nums, length);
   insert(x, nums, length, capacity);
@@ -44,6 +44,8 @@ void insert(int x, int* &nums, int &length, int &capacity){
       nums[i+1] = nums[i];
     }
   }
+  if(nums[0] > x)
+    nums[0] = x;
 
   length++;
 
