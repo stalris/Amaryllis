@@ -15,7 +15,7 @@ int main(void){
 }
 
 void bubble_sort(int nums[], int length){
-  for(int i = 0; i < length; i++){
+  for(int i = 0; i < length-1; i++){
     // on each iteration, compare the element at index j with the next element at index j+1.
     for(int j = 0; j < length - i - 1; j++){
       // if the element at j is greater than at j+1, then swap.

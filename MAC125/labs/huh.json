@@ -1,0 +1,16 @@
+[
+	{
+		"employeeID": 1,
+		"employeeName": "지혀",
+		"employeePosition": "owner",
+		"employeeSalary": 9000000.000000,
+		"employeeDepartment": "owner"
+	},
+	{
+		"employeeID": 2,
+		"employeeName": "sal",
+		"employeePosition": ":p",
+		"employeeSalary": 0.000000,
+		"employeeDepartment": ":p"
+	}
+]

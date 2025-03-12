@@ -1,0 +1,1 @@
+a string that's printed to thew new file
